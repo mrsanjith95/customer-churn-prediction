@@ -8,6 +8,12 @@ A machine learning application that predicts whether a bank customer is likely t
 
 ---
 
+## 🎓 CodSoft Internship — Task 3
+
+This project was developed as part of the **CodSoft Machine Learning Internship** (**Task 3: Customer Churn Prediction**).
+
+---
+
 ## ✨ Key Highlights
 
 - **10,000 Customer Records**: Analyzed historical banking dataset (`Churn_Modelling.csv`).
@@ -15,6 +21,23 @@ A machine learning application that predicts whether a bank customer is likely t
 - **3 ML Algorithms Evaluated**: Compared Logistic Regression, Random Forest, and Gradient Boosting.
 - **Gradient Boosting Model**: Selected as the top-performing model on the held-out test split.
 - **Streamlit Interactive Dashboard**: Compact, single-screen user interface for real-time predictions.
+
+---
+
+## 🔗 Project Links
+
+- **GitHub Repository**: [https://github.com/mrsanjith95/customer-churn-prediction](https://github.com/mrsanjith95/customer-churn-prediction)
+
+---
+
+## 🛠️ Technologies Used
+
+- **Programming Language**: Python 3.11+
+- **Data Analysis & Processing**: Pandas, NumPy
+- **Machine Learning**: Scikit-learn, Joblib
+- **Web Application Framework**: Streamlit
+- **Environment & Tools**: Jupyter Notebook
+- **Version Control & Hosting**: Git, GitHub
 
 ---
 
@@ -116,7 +139,6 @@ The project includes an interactive dashboard (`app.py`) built with Streamlit.
 ## 📸 Application Preview
 
 ![Customer Churn Prediction Dashboard](screenshots/dashboard.png)
-*(Note: Add dashboard screenshots to the `screenshots/` directory as `dashboard.png`)*
 
 ---
 
@@ -134,7 +156,8 @@ Customer Churn Prediction/
 ├── notebooks/
 │   └── Customer_Churn_Prediction.ipynb # Data analysis, preprocessing & model training
 │
-├── screenshots/                     # Application UI screenshots
+├── screenshots/
+│   └── dashboard.png               # Streamlit application UI screenshot
 │
 ├── app.py                           # Streamlit web application
 ├── requirements.txt                 # Exact package dependency versions
