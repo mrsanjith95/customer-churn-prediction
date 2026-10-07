@@ -138,15 +138,15 @@ Customer Churn Prediction/
 
 ## 🛠️ Technologies Used
 
-- **Python**
-- **Pandas**
-- **NumPy**
-- **Scikit-learn**
-- **Joblib**
-- **Streamlit**
-- **Jupyter Notebook**
-- **Git**
-- **GitHub**
+- Python 3.11+
+- Pandas
+- NumPy
+- Scikit-learn
+- Joblib
+- Streamlit
+- Jupyter Notebook
+- Git
+- GitHub
 
 ---
 

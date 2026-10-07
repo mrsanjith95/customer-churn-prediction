@@ -1,0 +1,3 @@
+# Configure GitHub Linguist language detection
+# Treat Jupyter Notebooks as project documentation so Python (app.py) is detected as the primary language
+*.ipynb linguist-documentation=true
