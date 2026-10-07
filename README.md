@@ -3,83 +3,55 @@
 ![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python)
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.6.1-orange?logo=scikit-learn)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.64.0-red?logo=streamlit)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-A machine learning application that predicts whether a bank customer is likely to churn based on demographic and banking information. The project features exploratory data analysis, evaluation of multiple ML models, model persistence, and an interactive Streamlit web dashboard.
+Customer Churn Prediction is an end-to-end machine learning project designed to identify bank customers at risk of leaving the institution. By analyzing demographic, financial, and behavioral patterns, the system computes probabilistic churn metrics and serves real-time predictions via an interactive Streamlit dashboard.
 
 ---
 
 ## 🎓 CodSoft Internship — Task 3
 
-This project was developed as part of the **CodSoft Machine Learning Internship** (**Task 3: Customer Churn Prediction**).
+This project was developed as part of the **CodSoft Machine Learning Internship, Task 3: Customer Churn Prediction**.
 
 ---
 
-## ✨ Key Highlights
+## 🚀 Project Overview
 
-- **10,000 Customer Records**: Analyzed historical banking dataset (`Churn_Modelling.csv`).
-- **10 Input Features**: Utilized key demographic and financial attributes for modeling.
-- **3 ML Algorithms Evaluated**: Compared Logistic Regression, Random Forest, and Gradient Boosting.
-- **Gradient Boosting Model**: Selected as the top-performing model on the held-out test split.
-- **Streamlit Interactive Dashboard**: Compact, single-screen user interface for real-time predictions.
+Customer churn poses a critical financial challenge for retail banks. Retaining existing customers is significantly more cost-effective than acquiring new ones. This project addresses the business problem by building an end-to-end predictive workflow: from exploratory data analysis and feature engineering to model comparison and web-based dashboard deployment.
 
 ---
 
-## 🔗 Project Links
+## ✨ Key Features
 
-- **GitHub Repository**: [https://github.com/mrsanjith95/customer-churn-prediction](https://github.com/mrsanjith95/customer-churn-prediction)
-
----
-
-## 🛠️ Technologies Used
-
-- **Programming Language**: Python 3.11+
-- **Data Analysis & Processing**: Pandas, NumPy
-- **Machine Learning**: Scikit-learn, Joblib
-- **Web Application Framework**: Streamlit
-- **Environment & Tools**: Jupyter Notebook
-- **Version Control & Hosting**: Git, GitHub
+- **Exploratory Data Analysis**: Data exploration identifying key behavioral and demographic churn drivers.
+- **Data Preprocessing**: Pipeline transformation using `StandardScaler` for continuous numerical features and `OneHotEncoder` for categorical features.
+- **Multiple ML Model Comparison**: Performance benchmarking across Logistic Regression, Random Forest, and Gradient Boosting.
+- **Gradient Boosting Model**: Selected model architecture optimized for classification accuracy and ROC-AUC performance.
+- **Probability-Based Churn Prediction**: Generates calibrated percentage metrics for churn risk assessment.
+- **Interactive Streamlit Dashboard**: User-friendly single-page application for dynamic customer risk evaluation.
+- **Model Persistence with Joblib**: Pipeline serialization preserving preprocessing states and feature alignment.
+- **Real-Time Prediction Interface**: Direct user inputs producing instant risk classification outputs.
 
 ---
 
-## 📌 Project Overview
+## 📊 Dataset
 
-Customer churn occurs when customers stop doing business with a service provider. In the banking sector, identifying customers at risk of leaving allows financial institutions to take proactive retention steps. 
+The model is trained on historical customer records from `Churn_Modelling.csv`:
 
-This project aims to:
-1. Conduct Exploratory Data Analysis (EDA) to discover key risk indicators for customer churn.
-2. Build data preprocessing pipelines (StandardScaler for numerical, OneHotEncoder for categorical variables).
-3. Train and compare multiple machine learning algorithms.
-4. Deploy the best-performing model into an intuitive, real-time dashboard application.
-
----
-
-## 📊 Dataset & Features
-
-The model is trained on the `Churn_Modelling.csv` dataset containing 10,000 customer entries.
-
-### Target Variable
-- **`Exited`**: `0` = Stayed, `1` = Churned
-
-### 10 Input Features Used
-1. **`CreditScore`**: Customer's credit score (300–850).
-2. **`Geography`**: Customer location (`France`, `Germany`, `Spain`).
-3. **`Gender`**: Customer gender (`Female`, `Male`).
-4. **`Age`**: Customer age in years (18–100).
-5. **`Tenure`**: Number of years the customer has been with the bank (0–10).
-6. **`Balance`**: Account balance ($).
-7. **`NumOfProducts`**: Number of bank products used (1–4).
-8. **`HasCrCard`**: Credit card holder status (`1` = Yes, `0` = No).
-9. **`IsActiveMember`**: Active membership status (`1` = Yes, `0` = No).
-10. **`EstimatedSalary`**: Estimated annual salary ($).
-
-*Note: Non-predictive identifiers (`RowNumber`, `CustomerId`, `Surname`) and temporary EDA variables (`AgeGroup`) were dropped prior to model training.*
+- **Total Records**: 10,000 customer entries
+- **Original Attributes**: 14 columns
+- **Final Predictive Features**: 10 attributes
+- **Target Variable**: `Exited`
+  - `0` = Stayed (Retained)
+  - `1` = Churned (Exited)
 
 ---
 
-## 🔍 Exploratory Data Analysis (EDA) Findings
+## 🔍 Exploratory Data Analysis
 
-Key insights established from the dataset analysis:
-- **Overall Churn Rate**: 79.63% of customers stayed, while 20.37% churned.
+Key verified statistical findings from the dataset analysis:
+
+- **Overall Churn Rate**: 79.63% (7,963) of customers stayed, while 20.37% (2,037) churned.
 - **Geographic Differences**: Customers in **Germany** exhibited a higher observed churn rate compared to those in France and Spain.
 - **Gender Insights**: Female customers showed a higher observed churn rate than male customers in this dataset.
 - **Member Activity**: Inactive members (`IsActiveMember = 0`) had a higher observed churn rate than active members.
@@ -88,51 +60,53 @@ Key insights established from the dataset analysis:
 
 ---
 
-## ⚙️ Data Preprocessing & Modeling Pipeline
+## ⚙️ Data Preprocessing
 
-1. **Preprocessing Pipeline**:
-   - **Numerical Features**: Scaled using `StandardScaler`.
-   - **Categorical Features**: Encoded using `OneHotEncoder(handle_unknown="ignore")`.
-2. **Train-Test Split**:
-   - Split ratio: **80% Train / 20% Test** (`test_size = 0.20`).
-   - Stratified sampling (`stratify = y`, `random_state = 42`) to preserve target distribution.
+The dataset underwent structured transformation before model training:
+
+- **Dropped Non-Predictive Columns**: Removed `RowNumber`, `CustomerId`, and `Surname`.
+- **Removed Temporary Variables**: Dropped temporary EDA column `AgeGroup`.
+- **Numerical Feature Scaling**: Applied `StandardScaler` to continuous variables (`CreditScore`, `Age`, `Tenure`, `Balance`, `NumOfProducts`, `EstimatedSalary`).
+- **Categorical Feature Encoding**: Applied `OneHotEncoder(handle_unknown="ignore")` to nominal features (`Geography`, `Gender`).
+- **Data Splitting**: Executed an 80/20 stratified train-test split (`test_size=0.20`, `stratify=y`, `random_state=42`) to preserve target distribution.
 
 ---
 
-## 📈 Model Performance & Evaluation
+## 🤖 Machine Learning Models
 
-Three classification models were trained and evaluated on the held-out test dataset (2,000 samples):
+Three supervised machine learning algorithms were trained and evaluated:
+
+1. **Logistic Regression**: Baseline linear classification model.
+2. **Random Forest**: Ensemble model using randomized decision trees.
+3. **Gradient Boosting**: Sequential ensemble boosting algorithm building weak learners to optimize pseudo-residuals.
+
+---
+
+## 📈 Model Performance
+
+All models were evaluated on the held-out test split of 2,000 records:
 
 | Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
 |---|---:|---:|---:|---:|---:|
-| **Logistic Regression** | 80.80% | 58.91% | 18.67% | 28.36% | 77.48% |
-| **Random Forest** | 85.90% | 76.60% | 44.23% | 56.07% | 85.32% |
-| **Gradient Boosting Classifier** | **87.05%** | **79.37%** | **49.14%** | **60.70%** | **86.97%** |
+| Logistic Regression | 80.80% | 58.91% | 18.67% | 28.36% | 77.48% |
+| Random Forest | 85.90% | 76.60% | 44.23% | 56.07% | 85.32% |
+| Gradient Boosting | 87.05% | 79.37% | 49.14% | 60.70% | 86.97% |
 
-### Selected Final Model
-The **Gradient Boosting Classifier** achieved the highest overall scores across Accuracy (87.05%), F1-Score (60.70%), and ROC-AUC (86.97%) on this project's held-out test split, and was serialized into `models/customer_churn_model.pkl`.
-
-### Performance Metrics Explained
-- **Accuracy**: Overall proportion of correctly predicted customers (churned and stayed).
-- **Precision**: Proportion of predicted churners who actually churned.
-- **Recall**: Proportion of actual churners correctly identified by the model.
-- **F1-Score**: Harmonic mean of Precision and Recall, balancing false positives and false negatives.
-- **ROC-AUC**: Ability of the model to distinguish between churning and non-churning customers across decision thresholds.
+*Note: Gradient Boosting was selected based on performance on the held-out test split for this specific dataset.*
 
 ---
 
-## 🖥️ Streamlit Web Application
+## 🖥️ Streamlit Application
 
-The project includes an interactive dashboard (`app.py`) built with Streamlit.
+The Streamlit dashboard (`app.py`) provides an intuitive web-based decision tool:
 
-### Key Application Features
-- **Customer Information Input**: Convenient controls for entering all 10 customer features.
-- **Real-Time Prediction**: Instant prediction output (`🟢 Likely to Stay` vs. `🔴 Likely to Churn`).
-- **Probability Breakdown**: Numerical metrics for Stay vs. Churn probabilities.
-- **Probability Visual Comparison**: Horizontal progress bar comparing Stay vs. Churn rates.
-- **Risk Level & Insight**: Categorization into Low, Medium, or High risk with text summaries.
-- **Model Metadata**: Collapsible section displaying model parameters and test metrics.
-- **Compact Dashboard Layout**: Single-viewport design optimized for desktop screens.
+- **Customer Input Form**: Interactive inputs for demographic, financial, and product parameters.
+- **Prediction Button**: Triggers inference using the pre-loaded machine learning pipeline.
+- **Stay Probability**: Visual metric displaying retention likelihood percentage.
+- **Churn Probability**: Visual metric displaying risk likelihood percentage.
+- **Risk Level**: Automated risk categorization (Low, Medium, High).
+- **Probability Comparison**: Visual progress bar contrasting Stay vs. Churn probabilities.
+- **Model Information**: Collapsible metadata viewer detailing test metrics and feature parameters.
 
 ---
 
@@ -142,43 +116,55 @@ The project includes an interactive dashboard (`app.py`) built with Streamlit.
 
 ---
 
-## 📁 Project Structure
+## 🏗️ Project Structure
 
 ```text
 Customer Churn Prediction/
-│
 ├── dataset/
-│   └── Churn_Modelling.csv         # Raw customer dataset (10,000 records)
-│
+│   └── Churn_Modelling.csv
 ├── models/
-│   └── customer_churn_model.pkl    # Serialized Gradient Boosting model pipeline
-│
+│   └── customer_churn_model.pkl
 ├── notebooks/
-│   └── Customer_Churn_Prediction.ipynb # Data analysis, preprocessing & model training
-│
+│   └── Customer_Churn_Prediction.ipynb
 ├── screenshots/
-│   └── dashboard.png               # Streamlit application UI screenshot
-│
-├── app.py                           # Streamlit web application
-├── requirements.txt                 # Exact package dependency versions
-├── README.md                        # Project documentation
-└── .gitignore                       # Git ignore configuration
+│   └── dashboard.png
+├── app.py
+├── requirements.txt
+├── README.md
+└── .gitignore
 ```
+
+---
+
+## 🛠️ Technologies Used
+
+- **Python**
+- **Pandas**
+- **NumPy**
+- **Scikit-learn**
+- **Joblib**
+- **Streamlit**
+- **Jupyter Notebook**
+- **Git**
+- **GitHub**
 
 ---
 
 ## 🚀 Installation & Execution
 
 ### Prerequisites
-- Python 3.11+ installed.
+
+- Python 3.11 or higher installed on your system.
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/mrsanjith95/customer-churn-prediction.git
 cd "Customer Churn Prediction"
 ```
 
 ### 2. Set Up Virtual Environment
+
 ```bash
 # Create virtual environment
 python -m venv .venv
@@ -191,45 +177,53 @@ source .venv/bin/activate
 ```
 
 ### 3. Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run the Application
+### 4. Launch Application
+
 ```bash
 streamlit run app.py
 ```
-The dashboard will open automatically in your browser at `http://localhost:8501`.
 
 ---
 
-## ⚙️ Model & Dependency Compatibility
+## 🔧 Model & Dependency Compatibility
 
-The serialized model (`customer_churn_model.pkl`) relies on exact scikit-learn pipeline specifications:
-- **`scikit-learn`**: `1.6.1`
-- **`joblib`**: `1.6.0`
-- **`pandas`**: `3.0.6`
-- **`numpy`**: `2.4.6`
-- **`streamlit`**: `1.64.0`
+The serialized model (`models/customer_churn_model.pkl`) was saved with specific dependency versions:
 
-Ensure you install dependencies using `pip install -r requirements.txt` to maintain version compatibility.
+- `scikit-learn==1.6.1`
+- `joblib==1.6.0`
+- `pandas==3.0.6`
+- `numpy==2.4.6`
+- `streamlit==1.64.0`
+
+The serialized model should be loaded using compatible dependency versions to prevent deserialization errors or pipeline mismatches.
 
 ---
 
 ## ⚠️ Limitations
 
-- **Dataset Scope**: Trained exclusively on the provided historical dataset (`Churn_Modelling.csv`).
-- **Probabilistic Estimates**: Predictions reflect statistical probabilities based on historical patterns and should not be treated as absolute certainty.
-- **Test Set Dependency**: Metrics are specific to the 20% test split evaluated in this project.
-- **Behavioral Evolution**: The model does not dynamically account for external market trends or policy changes outside the training dataset.
+- **Dataset Scope**: Model parameters reflect patterns present in `Churn_Modelling.csv` and may not generalize directly to different banking domains.
+- **Probabilistic Estimates**: Output values represent statistical likelihoods based on historical data rather than guaranteed outcomes.
+- **Test Set Specificity**: Reported evaluation metrics are derived from the single held-out test split.
+- **Static Dynamics**: External macro-economic shifts and policy changes are not dynamically captured by the trained model.
 
 ---
 
 ## 🔮 Future Improvements
 
-- **Hyperparameter Tuning**: Perform systematic grid search / Bayesian optimization to tune decision tree depths and learning rates.
-- **Cross-Validation**: Implement k-fold cross-validation during model evaluation.
-- **Threshold Optimization**: Adjust classification decision thresholds to optimize Recall for churn detection based on business costs.
-- **Feature Engineering**: Incorporate additional behavioral metrics such as transaction frequency and customer service interactions.
-- **Model Explainability**: Integrate SHAP (SHapley Additive exPlanations) or LIME for feature importance breakdown per customer.
-- **Cloud Deployment**: Deploy the Streamlit app to Streamlit Community Cloud or AWS/GCP.
+- **Hyperparameter Tuning**: Optimize model hyperparameters using Grid Search or Bayesian Optimization.
+- **Cross-Validation**: Incorporate k-fold cross-validation for more robust performance estimates.
+- **Threshold Optimization**: Adjust decision probability thresholds to prioritize recall according to customer retention economics.
+- **Feature Engineering**: Incorporate additional behavioral attributes such as transaction frequency and interaction history.
+- **Explainability**: Integrate SHAP or LIME for individual feature attribution explanations.
+- **Cloud Deployment**: Host the application on Streamlit Community Cloud or cloud container platforms.
+
+---
+
+## 🔗 Project Links
+
+- **GitHub Repository**: [https://github.com/mrsanjith95/customer-churn-prediction](https://github.com/mrsanjith95/customer-churn-prediction)
